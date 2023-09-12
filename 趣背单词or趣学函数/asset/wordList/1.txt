@@ -1,0 +1,52 @@
+21
+anxiety
+n.
+焦虑，忧虑，渴望，担心
+22
+anxious
+adj.
+焦急的，忧虑的，渴望的
+23
+any
+adj.
+什么，一些，任何的
+adv.
+稍一丁点
+pron.
+任何
+24
+anybody
+n.重要人物
+pron.任何人
+25
+accelerate vt.(使)加快，促进，加速，提前，跳级
+26
+acceleration n.加速，促进，加速度
+27
+accent n.口音，腔调，重音，强调 vt.重读，强调
+28
+accept vt.接受，同意，承担(责任等) vi.接受
+29
+acceptable adj.可接受的，合意的，受欢迎的
+30
+acceptance n.接受（礼物、邀请、建议等），同意，认可，验收，承认
+31
+access n.进入接近(的机会)，使用之权，通道入口 vt.(电脑)存取，进入
+32
+accessory n.同谋
+33
+accident n.意外的事故
+34
+accidental a.意外的，偶然的，附属的，非本质的 n.偶然不重要的东西
+35
+accommodate vt.容纳，供应，供给，提供，方便，使一致，和解，顾及 vi.使自己适应
+36
+accommodation n.招待，设备，预定，铺位，住处，膳宿，适应，和解
+37
+accompany vt.陪伴，陪同，伴随给...伴奏
+38
+accomplish vt.达到(目的)完成
+39
+accord vt.使一致，调解，赠予，给予 n.一致，调和，协议，自愿
+40
+accordance n.一致，和谐，授予，符合，同意

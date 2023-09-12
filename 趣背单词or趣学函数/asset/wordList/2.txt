@@ -1,0 +1,60 @@
+41
+accordingly adv.因此，所以，于是，相应地照着
+42
+account n.记述解释根据理由帐目报告估计利益好处 vi.报账解释导致
+vt.把...视为归咎(于)
+43
+accumulate vt.积累，累加，堆积 vi.堆积，累积
+44
+accuracy n.准确(性)，准确度
+45
+accurate adj.准确的，正确无误的
+46
+accuse vt.指责，责备，控告，归咎于
+47
+accustom vt.使...习惯
+48
+accustomed adj.惯常的，习惯的
+49
+ache vi.痛，想念，渴望 n.疼痛
+50
+achieve vt.完成，实现，达到 vi.达到目的
+51
+achievement n.完成，成就，成绩，达到
+52
+acid n.酸味物质adj.酸的，酸性的
+53
+acknowledge t.承认；告知，收到
+54
+acquaint
+vt.使认识，使了解
+55
+acquaintance
+n.
+认识，了解，熟人
+56
+acquire
+vt.
+占有，取得，获得，学到
+57
+acquisition
+n.
+获得,添加的物品
+58
+acre
+n.
+英亩(=6.07亩)
+59
+across
+prep.
+横过，穿过，在...对面
+adv.
+横过，使...被理解(或接受)
+60
+act
+vi.
+行动，表演，表现，充当，见效
+vt.
+表演，扮演
+n.
+行为，行动，法案，（戏剧、歌剧等的）一幕

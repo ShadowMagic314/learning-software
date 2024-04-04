@@ -15,7 +15,9 @@ struct gameData {
 	int gachaTimes;
 	int exp;
 	int pinkballNum;
-	int levelSchedule;//1~10//1完成后是1
+	int levelSchedule;//1~20//1完成后是1
+	int purpleMinimumGuaranteeCnt;
+	int goldMinimumGuaranteeCnt;
 	bool* ownFiveStarCharacters;
 	bool* ownFourStarCharacters;
 
@@ -28,6 +30,7 @@ struct gameData {
 	bool isLevelScane;
 	bool isLevelFinishScene;
 	bool isSelectLevelScene;
+	bool isMenuScene;
 };
 
 void gameDataInit(struct gameData*gd);

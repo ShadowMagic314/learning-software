@@ -1,8 +1,8 @@
 #include"gameData.h"
 
-void gameDataLoad(struct gameData* gd)//将来在这里写读档函数
+void gameDataLoad(struct gameData* gd)//读档函数
 {
-	FILE* gdFile = fopen("gamedata.txt", "r");
+	FILE* gdFile = fopen("gamedata.dat", "r");
 	if (gdFile == NULL) return;
 
 	char str[10];
@@ -14,6 +14,10 @@ void gameDataLoad(struct gameData* gd)//将来在这里写读档函数
 	gd->pinkballNum = atoi(str);
 	fgets(str, sizeof(str), gdFile);
 	gd->levelSchedule = atoi(str);
+	fgets(str, sizeof(str), gdFile);
+	gd->purpleMinimumGuaranteeCnt = atoi(str);
+	fgets(str, sizeof(str), gdFile);
+	gd->goldMinimumGuaranteeCnt = atoi(str);
 
 	for (int i = 0; i < FIVESTARCHARACTERNUM; i++) {
 		fgets(str, sizeof(str), gdFile);
@@ -39,9 +43,9 @@ void gameDataLoad(struct gameData* gd)//将来在这里写读档函数
 	fclose(gdFile);
 }
 
-void gameDataSave(struct gameData* gd)//将来在这里写存档函数
+void gameDataSave(struct gameData* gd)//存档函数
 {
-	FILE* gdFile = fopen("gamedata.txt", "w");
+	FILE* gdFile = fopen("gamedata.dat", "w");
 	if (gdFile == NULL) return;
 
 	char str[20];
@@ -52,6 +56,10 @@ void gameDataSave(struct gameData* gd)//将来在这里写存档函数
 	sprintf(str, "%d\n", gd->pinkballNum);
 	fputs(str, gdFile);
 	sprintf(str, "%d\n", gd->levelSchedule);
+	fputs(str, gdFile);
+	sprintf(str, "%d\n", gd->purpleMinimumGuaranteeCnt);
+	fputs(str, gdFile);
+	sprintf(str, "%d\n", gd->goldMinimumGuaranteeCnt);
 	fputs(str, gdFile);
 
 	for (int i = 0; i < FIVESTARCHARACTERNUM; i++) {
@@ -82,6 +90,12 @@ void gameDataInit(struct gameData* gd)
 	characterDatabaseInit(&gd->characterDB);
 
 	gd->gachaTimes = 0;
+	gd->exp = 0;
+	gd->pinkballNum = 0;
+	gd->levelSchedule = 0;
+
+	gd->purpleMinimumGuaranteeCnt = 0;
+	gd->goldMinimumGuaranteeCnt = 0;
 
 	gd->ownFiveStarCharacters = (bool*)malloc(sizeof(bool) * gd->characterDB.fiveStarCharacterNum);
 	if (gd->ownFiveStarCharacters == NULL) return;
@@ -94,7 +108,8 @@ void gameDataInit(struct gameData* gd)
 	gd->isLevelScane = false;
 	gd->isGachaScene = false;
 	gd->isLevelFinishScene = false;
-	gd->isSelectLevelScene = true;
+	gd->isSelectLevelScene = false;
+	gd->isMenuScene = true;
 }
 
 void gameDataDestroy(struct gameData* gd)

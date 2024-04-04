@@ -9,6 +9,7 @@
 #include"levelScene.h"
 #include"selectLevelScene.h"
 #include"levelFinishScene.h"
+#include"menuScene.h"
 
 int main()
 {
@@ -22,6 +23,15 @@ int main()
 	gamedata.load(&gamedata);
 
 	while (1) {
+		if (gamedata.isMenuScene == true) {
+			gamedata.isMenuScene = false;
+
+			struct menuScene menuscene;
+			menuSceneInit(&menuscene);
+			gameLoop((scene*)&menuscene, 30, &gamedata);
+			menuSceneDestroy(&menuscene);
+		}
+
 		if (gamedata.isSelectLevelScene == true) {
 			gamedata.isSelectLevelScene = false;
 

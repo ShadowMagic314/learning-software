@@ -2,12 +2,33 @@
 
 void selectLevelSceneDraw(struct selectLevelScene* s, struct gameData* gd)
 {
-	setbkcolor(BLUE);
-	cleardevice();
 	putTransparentImage(NULL, 0, 0, s->bkSelectLevel);
+	putTransparentImage(NULL, 708, 56, s->titleImg);
 	
 	s->gachaBtn->super.draw((sprite*)s->gachaBtn);
-	s->exitBtn->super.draw((sprite*)s->exitBtn);
+	s->homeBtn->super.draw((sprite*)s->homeBtn);
+
+	//¹Ø¿¨¿éÒÔ¼°ÐÇÐÇ
+	settextcolor(WHITE);
+	settextstyle(100, 0, "Î¢ÈíÑÅºÚ");
+	setbkmode(TRANSPARENT);
+	char str[5];
+	for (int i = 0; i < LEVEL_NUM; i++) {
+		putTransparentImage(NULL, s->rectLevels[i].left, s->rectLevels[i].top, s->levelBlock);
+
+		sprintf(str, "%d", i + 1);
+		if (i < 9) {
+			outtextxy(s->rectLevels[i].left + 35, s->rectLevels[i].top + 10, str);
+		}
+		else {
+			outtextxy(s->rectLevels[i].left + 13, s->rectLevels[i].top + 10, str);
+		}
+		
+		putTransparentImage(NULL, s->rectLevels[i].left + 4, s->rectLevels[i].top + 112, s->voidstar);
+		if (i < gd->levelSchedule) {
+			putTransparentImage(NULL, s->rectLevels[i].left + 8, s->rectLevels[i].top + 116, s->fullstar);
+		}
+	}
 
 	if (s->isGachaBtnHover == true) {
 		settextcolor(BLACK);
@@ -16,14 +37,7 @@ void selectLevelSceneDraw(struct selectLevelScene* s, struct gameData* gd)
 		outtextxy(1550, 110, "³é¿¨");
 	}
 
-	if (s->isExitBtnHover == true) {
-		settextcolor(RED);
-		settextstyle(100, 0, "Î¢ÈíÑÅºÚ");
-		setbkmode(TRANSPARENT);
-		outtextxy(350, 25, "ÍË³öÈ¤±³µ¥´Ê");
-	}
-
-	if (s->isSelectError == true && s->selectErrorCnt <= 25) {
+	if (s->isSelectError == true && s->selectErrorCnt <= 25) {//ÑÓÊ±ÏÔÊ¾
 		s->selectErrorCnt++;
 
 		settextcolor(RED);
@@ -77,10 +91,10 @@ void selectLevelSceneControl(struct selectLevelScene* s, ExMessage* msg, struct 
 			gd->isGachaScene = true;
 			s->isQuit = true;
 		}
-		if (s->exitBtn->super.x < msg->x && msg->x < s->exitBtn->super.x + s->exitBtn->super.width && s->exitBtn->super.y < msg->y && msg->y < s->exitBtn->super.y + s->exitBtn->super.height)
+		if (s->homeBtn->super.x < msg->x && msg->x < s->homeBtn->super.x + s->homeBtn->super.width && s->homeBtn->super.y < msg->y && msg->y < s->homeBtn->super.y + s->homeBtn->super.height)
 		{
-			gd->isExit = true;
 			s->isQuit = true;
+			gd->isMenuScene = true;
 		}
 	}
 	if (s->gachaBtn->super.x < msg->x && msg->x < s->gachaBtn->super.x + s->gachaBtn->super.width && s->gachaBtn->super.y < msg->y && msg->y < s->gachaBtn->super.y + s->gachaBtn->super.height)
@@ -89,14 +103,6 @@ void selectLevelSceneControl(struct selectLevelScene* s, ExMessage* msg, struct 
 	}
 	else {
 		s->isGachaBtnHover = false;
-	}
-
-	if (s->exitBtn->super.x < msg->x && msg->x < s->exitBtn->super.x + s->exitBtn->super.width && s->exitBtn->super.y < msg->y && msg->y < s->exitBtn->super.y + s->exitBtn->super.height)
-	{
-		s->isExitBtnHover = true;
-	}
-	else {
-		s->isExitBtnHover = false;
 	}
 }
 
@@ -113,19 +119,28 @@ void selectLevelSceneInit(struct selectLevelScene* s)
 	s->super.isQuit = (bool(*)(struct scene*, struct gameData* gd))selectLevelSceneIsQuit;
 
 	s->bkSelectLevel = new IMAGE;
-	loadimage(s->bkSelectLevel, "asset/image/bkSelectLevel.png");
+	loadimage(s->bkSelectLevel, "asset/image/selectLevelScene/bkSelectLevel.png");
+	s->levelBlock = new IMAGE;
+	loadimage(s->levelBlock, "asset/image/selectLevelScene/levelBlock.png");
+	s->titleImg = new IMAGE;
+	loadimage(s->titleImg, "asset/image/selectLevelScene/title.png");
+	s->voidstar = new IMAGE;
+	loadimage(s->voidstar, "asset/image/selectLevelScene/voidstar.png");
+	s->fullstar = new IMAGE;
+	loadimage(s->fullstar, "asset/image/selectLevelScene/fullstar.png");
 
 	s->rectLevels = (RECT*)malloc(sizeof(RECT) * LEVEL_NUM);
-	s->rectLevels[0] = { 163,333,448,571 };
-	s->rectLevels[1] = { 486,333,768,571 };
-	s->rectLevels[2] = { 820,333,1102,571 };
-	s->rectLevels[3] = { 1141,333,1426,571 };
-	s->rectLevels[4] = { 1465,331,1747,571 };
-	for (int i = 5; i < 10; i++) {
+	if (s->rectLevels == NULL) return;
+	s->rectLevels[0] = { 281,213,408,333 };
+	s->rectLevels[1] = { 589,213,716,333 };
+	s->rectLevels[2] = { 897,213,1024,333 };
+	s->rectLevels[3] = { 1205,213,1332,333 };
+	s->rectLevels[4] = { 1513,213,1640,333 };
+	for (int i = 5; i < LEVEL_NUM; i++) {
 		s->rectLevels[i].left = s->rectLevels[i - 5].left;
 		s->rectLevels[i].right = s->rectLevels[i - 5].right;
-		s->rectLevels[i].top = s->rectLevels[i - 5].top + 297;
-		s->rectLevels[i].bottom = s->rectLevels[i - 5].bottom + 297;
+		s->rectLevels[i].top = s->rectLevels[i - 5].top + 201;
+		s->rectLevels[i].bottom = s->rectLevels[i - 5].bottom + 201;
 	}
 
 	s->selectedLevel = -1;
@@ -134,11 +149,10 @@ void selectLevelSceneInit(struct selectLevelScene* s)
 
 	s->gachaBtn = (struct btn*)malloc(sizeof(struct btn));
 	btnInit(s->gachaBtn, 1700, 80, 169, 168, "asset/image/gachaBtn.png");
-	s->exitBtn= (struct btn*)malloc(sizeof(struct btn));
-	btnInit(s->exitBtn, 130, 35, 187, 80, "asset/image/exitBtn.png");
+	s->homeBtn = (struct btn*)malloc(sizeof(struct btn));
+	btnInit(s->homeBtn, 40, 497, 181, 634, "asset/image/selectLevelScene/homeBtn.png");
 
 	s->isGachaBtnHover = false;
-	s->isExitBtnHover = false;
 
 	s->selectErrorCnt = 0;
 }
@@ -146,9 +160,15 @@ void selectLevelSceneInit(struct selectLevelScene* s)
 void selectLevelSceneDestroy(struct selectLevelScene* s)
 {
 	delete s->bkSelectLevel;
+	delete s->levelBlock;
+	delete s->titleImg;
+	delete s->voidstar;
+	delete s->fullstar;
 
 	free(s->rectLevels);
 
 	btnDestroy(s->gachaBtn);
 	free(s->gachaBtn);
+	btnDestroy(s->homeBtn);
+	free(s->homeBtn);
 }

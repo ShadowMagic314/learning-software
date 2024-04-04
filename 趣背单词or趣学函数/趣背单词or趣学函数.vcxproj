@@ -27,6 +27,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="levelFinishScene.h" />
     <ClInclude Include="levelScene.h" />
+    <ClInclude Include="menuScene.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="selectLevelScene.h" />
     <ClInclude Include="sprite.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="levelFinishScene.cpp" />
     <ClCompile Include="levelScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menuScene.cpp" />
     <ClCompile Include="selectLevelScene.cpp" />
     <ClCompile Include="vector.cpp" />
     <ClCompile Include="video.cpp" />

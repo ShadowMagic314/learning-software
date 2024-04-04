@@ -5,13 +5,18 @@
 #include "gameData.h"
 #include "image.h"
 #include "btn.h"
-#include<stdio.h>
+#include <stdio.h>
 
-#define LEVEL_NUM 10
+#define LEVEL_NUM 20//现有关卡总数
+
 struct selectLevelScene {
 	struct scene super;
 
 	IMAGE* bkSelectLevel;
+	IMAGE* levelBlock;
+	IMAGE* titleImg;
+	IMAGE* voidstar;
+	IMAGE* fullstar;
 
 	RECT* rectLevels;//每一个关卡块
 
@@ -20,10 +25,9 @@ struct selectLevelScene {
 	bool isQuit;
 
 	btn* gachaBtn;
-	btn* exitBtn;
+	btn* homeBtn;
 
 	bool isGachaBtnHover;
-	bool isExitBtnHover;
 
 	bool isSelectError;//越级选择
 	int selectErrorCnt;
